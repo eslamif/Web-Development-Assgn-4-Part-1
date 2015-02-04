@@ -13,12 +13,10 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
 else if($_SERVER['REQUEST_METHOD'] == 'GET') {
 	echo "It's a GET request! <br>";
 
-	echo count($_GET);
-	/*
-	for($i = 0; $i < count($_GET); $i++) {
-		echo $i . "<br>";
+	foreach($_GET as $key => $value) {
+		echo "$key : $value <br>";
 	}
-	*/
+
 }
 
 
