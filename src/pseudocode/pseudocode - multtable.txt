@@ -1,0 +1,5 @@
+*** Validate Conditions ***
+Accept 4 parameters via GET
+Validate 4 parameters received
+Validate parameters are integers
+Validate min <= max for both multiplier and multiplicand

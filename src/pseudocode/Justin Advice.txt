@@ -1,0 +1,5 @@
+I would probably start with the loopback. That is a single function that is basically just getting variables from the request and printing them.
+
+From there there multiplication table and the session portion are both multiple step processes. For the mutliplication table, I would make a static HTML table, then figure out how to dynamically make that exact table in PHP, then figure out how to dynamically change it based on the input.
+
+For the login/session portion I am not quite sure what guidance to give, there are several pieces that need to work together. The only thing to really isolate is the login portion.
