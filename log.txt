@@ -1,0 +1,12 @@
+git log --pretty=format:"Start: %nEnd: %ad %nTasks: %s" --date=rfc
+
+Start: 
+End: 
+Tasks: 
+________________________________________________________
+
+
+************** PART 1 **************
+Start: WED, 4 Feb 2015 07:45:11 -0800
+End: WED, 4 Feb 2015 08:26:45 -0800
+Tasks: Read assignemnt instructions, Created Github Repo w/ directory & log.txt
