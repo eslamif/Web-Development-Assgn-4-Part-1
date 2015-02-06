@@ -3,56 +3,81 @@
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
+//Validate Input
 $inputValid = validateFourInputs($_GET);
 
+if($inputValid == true) 
+	$inputValid = validateParameters($_GET);
+
+if($inputValid == true)
+	$inputValid = validateIntInput($_GET);
 
 
-/*------ FUNCTION DEFINITIONS ------*/
-//Validate multiplicand and multiplier inputs
+/*-------- FUNCTION DEFINITIONS --------*/
+//Validate 4 inputs were passed
 function validateFourInputs($http) {
-	//4 parameters passed?
 	if(count($http) != 4) {
-		echo "Error: please input 4 parameters. Refresh the page and try again.";
+		echo "Error: you did not enter 4 parameters. Please try again.";
 		return false;
 	}
+	else return true;
+}
 
-	//Validate parameter names
+//Validate parameter names
+function validateParameters($http) {
 	$paramNames = array('min-multiplicand' => NULL, 'max-multiplicand' => NULL,
-						'min-multiplier' => NULL, 'max-multiplier' => NULL);
-
-	foreach($paramNames as $paramKey => $paramValue) {
-		foreach($http as $httpKey => $httpValue) {
-			if(strcmp($paramKey, $httpKey) == true) {
-				echo "worked <br>";
-				unset($paramKey);
-				break;
+			'min-multiplier' => NULL, 'max-multiplier' => NULL);
+	
+	$invalidNames = array();
+	
+	foreach($paramNames as $key => $value) {
+		if(array_key_exists($key, $http) == false) {
+			array_push($invalidNames, $key);
+		}
+	}
+	
+	//Prompt user with missing parameters
+	$elementCount = 0;
+	if(count($invalidNames) == 0)
+		return true;
+	else {
+		echo "The following parameters are missing: [";
+		foreach($invalidNames as $key => $value) {
+			echo "$invalidNames[$key]";
+			$elementCount++;
+			if($elementCount < count($invalidNames)) {
+				echo " ... ";
 			}
 		}
+		echo "]<br>";
+		return false;
 	}
-
-	var_dump($http);
-	var_dump($paramNames);
 }
 
-	/*
-function validateInputNames($http, $inputValid) {
+function validateIntInput($http) {
+	$invalidInt = array();
 	
-
-
-	if($http['min'])
-		echo "true";
-	else
-		echo "false";
-	
-	foreach($http as $key => $value) {
-		if($key == "min") {
-			echo "success <br>";
-		}
-		else {
-			echo "no <br>";
+	foreach($http as $httpKey => $httpValue) {
+		if(ctype_digit($httpValue) == false) {
+			array_push($invalidInt, $httpKey);
 		}
 	}
 
+	//Prompt user with missing parameters
+	$elementCount = 0;
+	if(count($invalidInt) == 0)
+		return true;
+	else {
+		echo "The values for the following parameters are not integers: [";
+		foreach($invalidInt as $key => $value) {
+			echo "$invalidInt[$key]";
+			$elementCount++;
+			if($elementCount < count($invalidInt)) {
+			echo " ... ";
+			}
+			}
+			echo "]<br>";
+					return false;
+	}	
 }
-	*/
 ?>
