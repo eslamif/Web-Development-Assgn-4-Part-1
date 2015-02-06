@@ -7,6 +7,36 @@ ________________________________________________________
 
 
 ************** PART 1 **************
+
+*********** loopback.php *********** 
+Start: Thu, 5 Feb 2015 21:10:07 -0800
+End: Thu, 5 Feb 2015 21:26:44 -0800
+Tasks: loopback successfully tested POST request
+
+Start: Thu, 5 Feb 2015 19:00:20 -0800
+End: Thu, 5 Feb 2015 20:26:46 -0800
+Tasks: loopback changed procedural to function
+
+Start: Thu, 5 Feb 2015 13:07:33 -0800
+End: Thu, 5 Feb 2015 14:46:30 -0800
+Tasks: loopback complete except when no key & value entered criteria
+
+Start: Thu, 5 Feb 2015 08:31:08 -0800
+End: Thu, 5 Feb 2015 11:03:48 -0800
+Tasks: loopback switched from functions to straight procedural
+
+Start: Wed, 4 Feb 2015 21:35:59 -0800
+End: Wed, 4 Feb 2015 22:44:00 -0800
+Tasks: loopback object structure implemented
+
+Start: Wed, 4 Feb 2015 14:55:48 -0800
+End: Wed, 4 Feb 2015 15:17:51 -0800
+Tasks: loopback iterates through GET parameters
+
+Start: Wed, 4 Feb 2015 13:15:11 -0800
+End: Wed, 4 Feb 2015 14:38:40 -0800
+Tasks: POST/GET verification & $_GET count()
+
 Start: WED, 4 Feb 2015 07:45:11 -0800
 End: WED, 4 Feb 2015 08:26:45 -0800
 Tasks: Read assignemnt instructions, Created Github Repo w/ directory & log.txt
