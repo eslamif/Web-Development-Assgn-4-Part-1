@@ -104,28 +104,21 @@ function createTable($http) {
 	$width = $maxWidth - $minWidth + 2;
 	
 	//Draw table
-	echo "<table>";
-	for($i = 0; $i < $height; $i++) {
+	echo "<table>\n";
+	for($i = $minHeight; $i < ($minHeight + $height); $i++) {
 		echo "<tr>";
-		for($j = 0; $j < $width; $j++) {
-			echo "<td>Width</td>";
+		for($j = $minWidth; $j < ($minWidth + $width); $j++) {	
+			if($i == $minHeight && $j == $minWidth )
+				echo "<td></td>";				
+			else if($i != $minHeight && $j == $minWidth)
+				echo "<td>" . ($i-1) . "</td>";
+			else if($i == $minHeight)
+				echo "<td>" . ($j-1) . "</td>";
+			else 
+				echo  "<td>" . (($i-1) * ($j-1)) . "</td>";
 		}
-		echo "</tr>";
+		echo "</tr>\n";
 	}
 	echo"</table>";
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 ?>
