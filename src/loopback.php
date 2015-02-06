@@ -3,6 +3,45 @@
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
+$httpRequest = getHttpRequest();
+$httpRequest = prependHttpType($httpRequest);
+$jsonObject = httpToJson($httpRequest);
+displayReturn($jsonObject);
+
+
+/*------ FUNCTION DEFINITIONS ------*/
+//Determine server request type
+function getHttpRequest() {
+	 if($_SERVER['REQUEST_METHOD'] == 'POST') {
+		return $_POST;
+	}
+	else if($_SERVER['REQUEST_METHOD'] == 'GET') {
+		return $_GET;
+	}	
+}
+
+//Prepend http request type to http request
+function prependHttpType($httpRequest) {
+	$httpType =  $_SERVER['REQUEST_METHOD'];
+	$httpRequest = array('parameters'=>$httpRequest);						
+	$httpRequest = array('Type'=>$httpType) + $httpRequest;				
+	return $httpRequest;
+}
+
+//Convert http request to JSON object
+function httpToJson($httpRequest) {
+	$jsonObject = json_encode($httpRequest);
+	return $jsonObject;
+}
+
+//Return JSON object
+function displayReturn($jsonObject) {
+	echo $jsonObject . "<br>";
+}
+
+
+
+/*
 //Determine server request type
 if($_SERVER['REQUEST_METHOD'] == 'POST') {
 	httpToJson($_POST);
@@ -12,12 +51,12 @@ else if($_SERVER['REQUEST_METHOD'] == 'GET') {
 }
 
 function httpToJson($type) {
+	if($type == NULL) {
+		echo "type is null <br>";
+	}
 	foreach($type as $key => $value) {						//iterate through http keys and values
 		if($key != "" && $value == "") {					//if key=true && value=false, value = undefined
-			$type[$key] = "undefined";
-		}
-		else if($key == "" && $value == "") {			//if no key or value passed
-			
+			$type[$key] = NULL;
 		}
 	}
 	
@@ -26,35 +65,11 @@ function httpToJson($type) {
 	$type = array('parameters'=>$type);						//add second array for parameters
 	$type = array('Type'=>$httpType) + $type;				//prepend type:GET|POST
 	
-	global $jsonObject;
 	$jsonObject = json_encode($type);
 	echo $jsonObject;
 }
-
-
-
-/* The following code should produce the same result, but receiving fatal error at line 34.
- 
-$test = restructureHttp($http);
-$jsonObject = httpToJson(&$test);	//Fatal error: Call-time pass-by-reference has been removed in line 34
-displayHttp($jsonObject);
-
-//Structure array to {"Type":"[GET|POST]","parameters":{"key1":"value1", ... ,"keyn":"valuen"}}
-function restructureHttp(&$http) {
-	$httpType =  $_SERVER['REQUEST_METHOD'];
-	$http = array('parameters'=>$http);						//add second array for parameters
-	$http = array('Type'=>$httpType) + $http;				//prepend type:GET|POST
-	return $http;
-}
-
-//Convert http string to JSON object
-function httpToJson(&$http) {
-	$jsonObject = json_encode($http);
-	return $jsonObject;
-}
-
-function displayHttp(&$input) {
-	echo $input . "<br>";
-}
 */
+
+
+
 ?>
