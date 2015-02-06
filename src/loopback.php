@@ -22,10 +22,21 @@ function getHttpRequest() {
 
 //Prepend http request type to http request
 function prependHttpType($httpRequest) {
-	$httpType =  $_SERVER['REQUEST_METHOD'];
-	$httpRequest = array('parameters'=>$httpRequest);						
-	$httpRequest = array('Type'=>$httpType) + $httpRequest;				
-	return $httpRequest;
+	if($httpRequest == NULL) {
+		$httpRequest = array('TYPE' => 'GET|POST', 'parameters' => 'null');	
+		return $httpRequest;
+	}
+	else if($httpRequest != NULL) {					
+		foreach($httpRequest as $key => $value) {					
+			if($key != NULL && $value == NULL) {					
+				$httpRequest[$key] = NULL;
+			}
+		}
+		$httpType =  $_SERVER['REQUEST_METHOD'];
+		$httpRequest = array('parameters'=>$httpRequest);						
+		$httpRequest = array('Type'=>$httpType) + $httpRequest;				
+		return $httpRequest;
+	}
 }
 
 //Convert http request to JSON object
@@ -38,38 +49,4 @@ function httpToJson($httpRequest) {
 function displayReturn($jsonObject) {
 	echo $jsonObject . "<br>";
 }
-
-
-
-/*
-//Determine server request type
-if($_SERVER['REQUEST_METHOD'] == 'POST') {
-	httpToJson($_POST);
-}
-else if($_SERVER['REQUEST_METHOD'] == 'GET') {
-	httpToJson($_GET);
-}
-
-function httpToJson($type) {
-	if($type == NULL) {
-		echo "type is null <br>";
-	}
-	foreach($type as $key => $value) {						//iterate through http keys and values
-		if($key != "" && $value == "") {					//if key=true && value=false, value = undefined
-			$type[$key] = NULL;
-		}
-	}
-	
-	//Structure array to {"Type":"[GET|POST]","parameters":{"key1":"value1", ... ,"keyn":"valuen"}}
-	$httpType =  $_SERVER['REQUEST_METHOD'];
-	$type = array('parameters'=>$type);						//add second array for parameters
-	$type = array('Type'=>$httpType) + $type;				//prepend type:GET|POST
-	
-	$jsonObject = json_encode($type);
-	echo $jsonObject;
-}
-*/
-
-
-
 ?>
