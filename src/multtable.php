@@ -12,6 +12,10 @@ if($inputValid == true)
 if($inputValid == true)
 	$inputValid = validateIntInput($_GET);
 
+//Create table
+if($inputValid == true)
+	createTable($_GET);
+
 
 /*-------- FUNCTION DEFINITIONS --------*/
 //Validate 4 inputs were passed
@@ -77,7 +81,51 @@ function validateIntInput($http) {
 			}
 			}
 			echo "]<br>";
-					return false;
+				return false;
 	}	
 }
+
+
+//Create table
+function createTable($http) {
+	//Calculate table height & width
+	foreach($http as $key => $value) {
+		if($key == "max-multiplicand") 
+			$maxHeight = $value;
+		else if($key == "min-multiplicand")
+			$minHeight = $value;
+		else if($key == "max-multiplier")
+			$maxWidth = $value;
+		else if($key == "min-multiplier")
+			$minWidth = $value;
+	}
+	
+	$height = $maxHeight - $minHeight + 2;
+	$width = $maxWidth - $minWidth + 2;
+	
+	//Draw table
+	echo "<table>";
+	for($i = 0; $i < $height; $i++) {
+		echo "<tr>";
+		for($j = 0; $j < $width; $j++) {
+			echo "<td>Width</td>";
+		}
+		echo "</tr>";
+	}
+	echo"</table>";
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ?>
