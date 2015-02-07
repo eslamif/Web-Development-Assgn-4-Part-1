@@ -8,6 +8,25 @@ ________________________________________________________
 
 ************** PART 1 **************
 
+*********** multtable.php *********** 
+Start: Fri, 6 Feb 2015 13:35:26 -0800
+End: Fri, 6 Feb 2015 14:24:08 -0800
+Tasks: multtable - completed
+
+Start: Fri, 6 Feb 2015 12:35:49 -0800
+End: Fri, 6 Feb 2015 13:09:36 -0800
+Tasks: multtable - table skeleton complete
+
+Start: Fri, 6 Feb 2015 09:02:00 -0800
+End: Fri, 6 Feb 2015 11:28:08 -0800
+Tasks: multtable - implemented all validations
+
+Start: Thu, 5 Feb 2015 22:15:1 -0800
+End: Thu, 5 Feb 2015 22:55:48 -0800
+Tasks: multtable - worked on input validation
+
+
+
 *********** loopback.php *********** 
 Start: Thu, 5 Feb 2015 21:10:07 -0800
 End: Thu, 5 Feb 2015 21:26:44 -0800
