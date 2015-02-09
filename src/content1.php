@@ -4,7 +4,13 @@ error_reporting(E_ALL);
 ini_set('display_errors', 1);
 header('Content-Type: text/html');
 
-if($_SERVER['REQUEST_METHOD'] == 'POST') {
+session_start();
+	
+if($_SERVER['REQUEST_METHOD'] == 'GET' && !isset($_SESSION['loggedIn'])) {
+	echo "You must log in first. Please click 
+	<a href=http://localhost/myhost-exemple/cs290-ass4-p1/src/login.php>here</a> to log in.";
+}
+else if($_SERVER['REQUEST_METHOD'] == 'POST') {
 	session($_POST);
 }
 else if($_SERVER['REQUEST_METHOD'] == 'GET') {
@@ -16,7 +22,7 @@ else if($_SERVER['REQUEST_METHOD'] == 'GET') {
 //Track Session
 function session($http) {
 	//Start and End session
-	session_start();
+
 	if(isset($http['action']) && $http['action'] == 'end') {
 		//End session
 		$_SESSION = array();
@@ -36,7 +42,7 @@ function session($http) {
 		*/
 	}
 	
-	//Active session - write and read
+	//Set username and user status as logged in
 	if(session_status() == PHP_SESSION_ACTIVE && !isset($_SESSION['loggedIn'])) {
 		$validUsername = validateUsername($_POST['username']);					//Validate username
 		
@@ -52,14 +58,13 @@ function session($http) {
 		}
 	}
 	
-	if(session_status() == PHP_SESSION_ACTIVE && isset($_SESSION['loggedIn'])) {
-		//Track number of visits
+	//Track and greet user
+	if(session_status() == PHP_SESSION_ACTIVE && isset($_SESSION['loggedIn'])) {	
 		if(!isset($_SESSION['visits'])) {
 			$_SESSION['visits'] = -1;
 		}
 		
 		$_SESSION['visits']++;
-
 		greetUser();			
 	}
 }
