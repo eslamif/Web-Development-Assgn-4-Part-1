@@ -23,6 +23,10 @@ function session($http) {
 		session_destroy();
 		
 		//Redirect user
+		$redirect = "http://localhost/myhost-exemple/cs290-ass4-p1/src/login.php";
+		header("Location: {$redirect}/Logout.html", true);
+		die();			
+		
 		/*
 		$filePath = explode('/', $_SERVER['PHP_SELF'], -1);
 		$filePath = implode('/', $filePath);
@@ -34,26 +38,27 @@ function session($http) {
 	
 	//Active session - write and read
 	if(session_status() == PHP_SESSION_ACTIVE) {
-		validateUsername($_POST['username']);
+		$validUsername = validateUsername($_POST['username']);					//Validate username
 		
-		//Validate username
-		if(isset($http['username'])) {
-			$_SESSION['username'] = $http['username'];
+		if($validUsername == true) {
+			if(isset($http['username'])) {
+				$_SESSION['username'] = $http['username'];
+			}
+			
+			//Set user status as logged in
+			if(!isset($_SESSION['loggedIn'])) {
+				$_SESSION['loggedIn'] = true;
+			}
+			
+			//Track number of visits
+			if(!isset($_SESSION['visits'])) {
+				$_SESSION['visits'] = 0;
+			}
+			
+			$_SESSION['visits']++;
+
+			greetUser();			
 		}
-		
-		//Set user status as logged in
-		if(!isset($_SESSION['loggedIn'])) {
-			$_SESSION['loggedIn'] = true;
-		}
-		
-		//Track number of visits
-		if(!isset($_SESSION['visits'])) {
-			$_SESSION['visits'] = 0;
-		}
-		
-		$_SESSION['visits']++;
-		
-		greetUser();
 	}
 }
 
@@ -63,13 +68,16 @@ function validateUsername($username) {
 	if($username == "" || $username == NULL) {
 		echo "A username must be entered. Click 
 		<a href=http://localhost/myhost-exemple/cs290-ass4-p1/src/login.php>here</a> to return to the Login screen.";
+		return false;
 	}
+	else
+		return true;
 }
 
 //Greet user
 function greetUser() {
 	echo "Hi $_SESSION[username], you have visited this page $_SESSION[visits] times. \n";
-	echo "Click <a href=http://localhost/myhost-exemple/cs290-ass4-p1/src/login.php>here</a> to logout";
+	echo "Click <a href=http://localhost/myhost-exemple/cs290-ass4-p1/src/content1.php?action=end>here</a> to logout";
 }
 
 
