@@ -37,7 +37,7 @@ function session($http) {
 	}
 	
 	//Active session - write and read
-	if(session_status() == PHP_SESSION_ACTIVE) {
+	if(session_status() == PHP_SESSION_ACTIVE && !isset($_SESSION['loggedIn'])) {
 		$validUsername = validateUsername($_POST['username']);					//Validate username
 		
 		if($validUsername == true) {
@@ -49,16 +49,18 @@ function session($http) {
 			if(!isset($_SESSION['loggedIn'])) {
 				$_SESSION['loggedIn'] = true;
 			}
-			
-			//Track number of visits
-			if(!isset($_SESSION['visits'])) {
-				$_SESSION['visits'] = 0;
-			}
-			
-			$_SESSION['visits']++;
-
-			greetUser();			
 		}
+	}
+	
+	if(session_status() == PHP_SESSION_ACTIVE && isset($_SESSION['loggedIn'])) {
+		//Track number of visits
+		if(!isset($_SESSION['visits'])) {
+			$_SESSION['visits'] = -1;
+		}
+		
+		$_SESSION['visits']++;
+
+		greetUser();			
 	}
 }
 
