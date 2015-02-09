@@ -66,6 +66,11 @@ function session($http) {
 		
 		$_SESSION['visits']++;
 		greetUser();			
+
+		//Redirect user to content2.php
+		//$redirect = "http://localhost/myhost-exemple/cs290-ass4-p1/src/content2.php";
+		header("Location: http://localhost/myhost-exemple/cs290-ass4-p1/src/content2.php");
+
 	}
 }
 
@@ -83,7 +88,7 @@ function validateUsername($username) {
 
 //Greet user
 function greetUser() {
-	echo "Hi $_SESSION[username], you have visited this page $_SESSION[visits] times. \n";
+	echo "Hi $_SESSION[username], you have visited this content1.php page $_SESSION[visits] times. \n";
 	echo "Click <a href=http://localhost/myhost-exemple/cs290-ass4-p1/src/content1.php?action=end>here</a> to logout";
 }
 
