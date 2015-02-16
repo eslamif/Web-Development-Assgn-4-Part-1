@@ -8,6 +8,28 @@ ________________________________________________________
 
 ************** PART 1 **************
 
+****** login/conten1/content2 ****** 
+Start: Mon, 9 Feb 2015 19:05:00 -0800
+End: Mon, 9 Feb 2015 20:29:49 -0800
+Tasks: Assignment 4 Part 1 Complete
+
+Start: Sun, 8 Feb 2015 18:5:40 -0800
+End: Sun, 8 Feb 2015 18:23:23 -0800
+Tasks: Fix errors
+
+Start: Sun, 8 Feb 2015 14:33:14 -0800
+End: Sun, 8 Feb 2015 17:58:49 -0800
+Tasks: completed conten1.php. content2.php next
+
+Start: Sun, 8 Feb 2015 09:02:57 -0800
+End: Sun, 8 Feb 2015 11:56:19 -0800
+Tasks: content1.php - login, username validation, session init successful. Implement logout next
+
+Start: Sat, 7 Feb 2015 09:00:13 -0800
+End: Sat, 7 Feb 2015 11:39:48 -0800
+Tasks: login - created form & tested submission:
+
+
 *********** multtable.php *********** 
 Start: Fri, 6 Feb 2015 13:35:26 -0800
 End: Fri, 6 Feb 2015 14:24:08 -0800
